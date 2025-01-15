@@ -25,6 +25,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import AgentProfile from './Pages/DashboardPage/AgentPage/AgentProfile';
 import AddProperty from './Pages/DashboardPage/AgentPage/AddProperty';
 import MyAddedProperties from './Pages/DashboardPage/AgentPage/MyAddedProperties';
+import UpdateProperty from './Pages/DashboardPage/AgentPage/UpdateProperty';
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/addProperty",
         element: <AddProperty></AddProperty>
+      },
+      {
+        path: "/dashboard/updateAddedProperty/:id",
+        element: <UpdateProperty></UpdateProperty>,
+        loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
       },
       {
         path: "/dashboard/myAddedProperties",
