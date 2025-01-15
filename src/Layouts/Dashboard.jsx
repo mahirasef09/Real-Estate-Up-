@@ -8,8 +8,8 @@ import { SiSellfy } from 'react-icons/si';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
-    const normalUser = true;
-    const isAgent = false;
+    const normalUser = false;
+    const isAgent = true;
     const isAdmin = false;
 
     return (
@@ -32,7 +32,7 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/myReview"><MdRateReview />My Reviews</NavLink>
                             </li>
                             <li className='text-xl font-bold'>
-                                <NavLink to="/"><MdHomeWork />Home</NavLink>
+                                <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
                             </li>
                         </>
                     }
@@ -55,7 +55,7 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/myRequestedProperties"><GoHomeFill />My Requested Properties</NavLink>
                             </li>
                             <li className='text-xl font-bold'>
-                                <NavLink to="/"><MdHomeWork />Home</NavLink>
+                                <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
                             </li>
                         </>
 
@@ -75,7 +75,7 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/manageReview"><MdRateReview />Manage Reviews</NavLink>
                             </li>
                             <li className='text-xl font-bold'>
-                                <NavLink to="/"><MdHomeWork />Home</NavLink>
+                                <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
                             </li>
                         </>
                     }

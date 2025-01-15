@@ -18,13 +18,13 @@ const SignUp = () => {
     const navigate = useNavigate();
 
     const onSubmit = data => {
-        
+
         createNewUser(data.email, data.password)
             .then(result => {
                 const currentUser = result.user;
-                
+
                 setUser(currentUser);
-                updateUserProfile({displayName: data.name, photoURL: data.photoURL})
+                updateUserProfile({ displayName: data.name, photoURL: data.photoURL })
                     .then(() => {
                         // create user in the database
                         const userInfo = {
@@ -45,14 +45,6 @@ const SignUp = () => {
                                     navigate('/');
                                 }
                             })
-                            // .catch((err) => {
-                            //     Swal.fire({
-                            //         title: 'Error!',
-                            //         text: err.message,
-                            //         icon: 'error',
-                            //         confirmButtonText: 'Oops'
-                            //     });
-                            // })
                     })
                     .catch(error => {
                         reset();
@@ -63,6 +55,15 @@ const SignUp = () => {
                             confirmButtonText: 'Oops'
                         });
                     })
+            })
+            .catch(error => {
+                reset();
+                Swal.fire({
+                    title: 'Error!',
+                    text: error.message,
+                    icon: 'error',
+                    confirmButtonText: 'Oops'
+                });
             })
     };
 
