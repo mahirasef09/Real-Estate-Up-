@@ -23,6 +23,8 @@ import SignIn from './Pages/SignInPage/SignIn';
 import SignUp from './Pages/SignUpPage/SignUp';
 import { HelmetProvider } from 'react-helmet-async';
 import AgentProfile from './Pages/DashboardPage/AgentPage/AgentProfile';
+import AddProperty from './Pages/DashboardPage/AgentPage/AddProperty';
+import MyAddedProperties from './Pages/DashboardPage/AgentPage/MyAddedProperties';
 
 const queryClient = new QueryClient();
 
@@ -64,6 +66,14 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/agentProfile",
         element: <AgentProfile></AgentProfile>
+      },
+      {
+        path: "/dashboard/addProperty",
+        element: <AddProperty></AddProperty>
+      },
+      {
+        path: "/dashboard/myAddedProperties",
+        element: <MyAddedProperties></MyAddedProperties>
       },
     ]
   },

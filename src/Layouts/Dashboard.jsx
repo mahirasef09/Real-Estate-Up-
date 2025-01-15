@@ -13,7 +13,7 @@ const Dashboard = () => {
     const isAdmin = false;
 
     return (
-        <div className='flex'>
+        <div className='flex flex-col lg:flex-row'>
             {/* dashboard side bar */}
             <div className="w-80 min-h-screen bg-green-500">
                 <ul className='menu p-1'>
