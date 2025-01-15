@@ -13,6 +13,9 @@ import Home from './Layouts/Home';
 import Dashboard from './Layouts/Dashboard';
 import MyProfile from './Pages/DashboardPage/UserPage/MyProfile';
 import AllProperties from './Pages/AllPropertiesPage/AllProperties';
+import SignIn from './Pages/SignInPage/SignIn';
+import SignUp from './Pages/SignUpPage/SignUp';
+import { HelmetProvider } from 'react-helmet-async';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +30,14 @@ const router = createBrowserRouter([
       {
         path: "/allProperties",
         element: <AllProperties></AllProperties>
+      },
+      {
+        path: "/signIn",
+        element: <SignIn></SignIn>
+      },
+      {
+        path: "/signUp",
+        element: <SignUp></SignUp>
       },
     ]
   },
@@ -46,7 +57,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <HelmetProvider>
+        <RouterProvider router={router} />
+      </HelmetProvider>
     </AuthProvider>
   </StrictMode>,
 )

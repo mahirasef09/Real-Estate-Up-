@@ -3,12 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import { FaUserTie } from "react-icons/fa";
 import { Tooltip } from 'react-tooltip';
 import { IoMoon, IoSunny } from "react-icons/io5";
-import { RiRestaurant2Line } from "react-icons/ri";
 import useAuth from "../Hooks/useAuth";
 import { MdHomeWork } from "react-icons/md";
+import { FiLogIn } from "react-icons/fi";
 
 const NavBar = () => {
-    const { user, userLogout } = useAuth();
+    const { user, userSignOut } = useAuth();
     const [dark, setDark] = useState(false);
 
     const darkModeHandler = () => {
@@ -71,14 +71,14 @@ const NavBar = () => {
                                                         src={user?.photoURL} />
                                                 </div>
                                             </div>
-                                            <ul
+                                            {/* <ul
                                                 tabIndex={0}
                                                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                                 <li>
                                                     <NavLink to={'/myFoods'}>My Foods</NavLink></li>
                                                 <li><NavLink to={'/addFood'}>Add Food</NavLink></li>
                                                 <li><NavLink to={'/myOrders'}>My Orders</NavLink></li>
-                                            </ul>
+                                            </ul> */}
                                         </div>
                                     </div> :
                                     <FaUserTie className="text-3xl text-green-700"></FaUserTie>
@@ -86,9 +86,9 @@ const NavBar = () => {
                         </div>
                         <div>
                             {
-                                user && user?.email ? <button onClick={userLogout} className="btn bg-green-500 hover:bg-accent font-bold">Log Out</button> :
+                                user && user?.email ? <button onClick={userSignOut} className="btn bg-green-500 hover:bg-accent font-bold">Sign Out</button> :
                                     <div className="flex flex-col md:flex-row gap-2">
-                                        <Link to={"/login"} className="btn bg-green-500 hover:bg-accent font-bold">Login</Link>
+                                        <Link to={"/signIn"} className="btn bg-green-500 hover:bg-accent font-bold"><FiLogIn />Sign In</Link>
                                     </div>
                             }
                         </div>

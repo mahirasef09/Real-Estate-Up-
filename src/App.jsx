@@ -1,22 +1,22 @@
-import { useState } from 'react'
 import './App.css'
 import NavBar from './Components/NavBar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Footer from './Components/Footer'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const location = useLocation();
+  const noHeaderFooter = location.pathname.includes('signIn') || location.pathname.includes('signUp');
 
   return (
     <div className='bg-white dark:bg-black space-y-3'>
       <header>
-        <NavBar></NavBar>
+        {noHeaderFooter || <NavBar></NavBar>}
       </header>
       <main className='w-11/12 mx-auto min-h-screen'>
         <Outlet></Outlet>
       </main>
       <footer>
-        <Footer></Footer>
+        {noHeaderFooter || <Footer></Footer>}
       </footer>
     </div>
   )

@@ -19,11 +19,12 @@ const AuthProvider = ({ children }) => {
     }
 
     const updateUserProfile = (updatedData) => {
+        console.log(updatedData);
         setLoading(true);
-        return updateProfile(auth.currentUser, updatedData)
+        return updateProfile(auth.currentUser, updatedData);
     }
 
-    const userLogin = (email, password) => {
+    const userSignIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     }
@@ -33,13 +34,14 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider);
     }
 
-    const userLogout = () => {
+    const userSignOut = () => {
         setLoading(true);
         Swal.fire({
-            title: 'Success!',
-            text: 'Log Out Successful',
+            position: 'center',
             icon: 'success',
-            confirmButtonText: 'Cool'
+            title: 'Sign Out successful.',
+            showConfirmButton: false,
+            timer: 2500
         })
         return signOut(auth);
     }
@@ -47,24 +49,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
-
-            if (currentUser?.email) {
-                const user = { email: currentUser.email }
-
-                axios.post('https://restaurant-management-server-flax.vercel.app/jwt', user, {withCredentials: true})
-                .then(res => {
-                    // console.log('login token',res.data);
-                    setLoading(false);
-                })
-            }
-            else{
-                axios.post('https://restaurant-management-server-flax.vercel.app/logout', {}, {withCredentials: true})
-                .then(res => {
-                    // console.log('logout', res.data);
-                    setLoading(false);
-                })
-            }
-
+            setLoading(false);
         });
 
         return () => {
@@ -83,9 +68,9 @@ const AuthProvider = ({ children }) => {
         setState,
         createNewUser,
         updateUserProfile,
-        userLogin,
+        userSignIn,
         signInUserWithGoogle,
-        userLogout
+        userSignOut
     }
 
     return (
