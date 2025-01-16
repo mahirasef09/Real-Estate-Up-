@@ -19,7 +19,7 @@ const NavBar = () => {
     const links = <>
         <li className="font-bold"><NavLink to={'/'}>Home</NavLink></li>
         <li className="font-bold"><NavLink to={'/allProperties'}>All Properties</NavLink></li>
-        <li className="font-bold"><NavLink to={'/dashboard'}>Dashboard</NavLink></li>
+        <li className="font-bold"><NavLink to={'/dashboard/welcome'}>Dashboard</NavLink></li>
     </>
     return (
         <div>

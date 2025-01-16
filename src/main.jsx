@@ -28,6 +28,7 @@ import MyAddedProperties from './Pages/DashboardPage/AgentPage/MyAddedProperties
 import UpdateProperty from './Pages/DashboardPage/AgentPage/UpdateProperty';
 import AdminProfile from './Pages/DashboardPage/AdminPage/AdminProfile';
 import ManageProperties from './Pages/DashboardPage/AdminPage/ManageProperties';
+import Welcome from './Components/Welcome';
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
+      {
+        path: "/dashboard/welcome",
+        element: <Welcome></Welcome>
+      },
       {
         path: "/dashboard/myProfile",
         element: <MyProfile></MyProfile>
