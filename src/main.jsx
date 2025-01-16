@@ -26,6 +26,8 @@ import AgentProfile from './Pages/DashboardPage/AgentPage/AgentProfile';
 import AddProperty from './Pages/DashboardPage/AgentPage/AddProperty';
 import MyAddedProperties from './Pages/DashboardPage/AgentPage/MyAddedProperties';
 import UpdateProperty from './Pages/DashboardPage/AgentPage/UpdateProperty';
+import AdminProfile from './Pages/DashboardPage/AdminPage/AdminProfile';
+import ManageProperties from './Pages/DashboardPage/AdminPage/ManageProperties';
 
 const queryClient = new QueryClient();
 
@@ -80,6 +82,16 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myAddedProperties",
         element: <MyAddedProperties></MyAddedProperties>
+      },
+
+      // Admin routes
+      {
+        path: "/dashboard/adminProfile",
+        element: <AdminProfile></AdminProfile>
+      },
+      {
+        path: "/dashboard/manageProperties",
+        element: <ManageProperties></ManageProperties>
       },
     ]
   },

@@ -9,8 +9,8 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
     const normalUser = false;
-    const isAgent = true;
-    const isAdmin = false;
+    const isAgent = false;
+    const isAdmin = true;
 
     return (
         <div className='flex flex-col lg:flex-row'>

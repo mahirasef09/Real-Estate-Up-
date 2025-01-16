@@ -6,7 +6,7 @@ const useProperties = () => {
     const { user} = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: properties = [], refetch } = useQuery({
-        queryKey: ['cart', user?.email],
+        queryKey: ['properties'],
         queryFn: async() => {
             const res = await axiosSecure.get(`/property?email=${user?.email}`);
             return res.data;

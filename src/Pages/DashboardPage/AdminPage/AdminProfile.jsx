@@ -3,7 +3,7 @@ import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 
-const AgentProfile = () => {
+const AdminProfile = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: dashboardUser = [] } = useQuery({
@@ -68,4 +68,4 @@ const AgentProfile = () => {
     );
 };
 
-export default AgentProfile;
+export default AdminProfile;
