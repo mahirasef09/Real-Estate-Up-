@@ -86,11 +86,24 @@ const ManageUsers = () => {
                         Swal.fire({
                             position: "center",
                             icon: "success",
-                            title: `${user.name} is Fraud Now`,
+                            title: `${user.name} is a fraud`,
                             showConfirmButton: false,
                             timer: 2500
                         });
                     }
+
+                    const response = await axiosSecure.delete(`/property?email=${user.email}`);
+                    if (response.data.deletedCount > 0) {
+                        refetch();
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `${user.name} is a fraud. All Properties added by him/her are deleted`,
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+
                 }
             });
     };

@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -14,6 +15,14 @@ const AddProperty = () => {
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+
+    const { data: dashboardUser = [] } = useQuery({
+        queryKey: ['dashboardUser'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/users?email=${user?.email}`);
+            return res.data;
+        }
+    });
 
     const onSubmit = async (data) => {
 
@@ -53,6 +62,9 @@ const AddProperty = () => {
             <div className='lg:w-3/4 mx-auto bg-base-100'>
                 <div className="text-center pt-5">
                     <h1 className="text-5xl font-extrabold">Add Property!</h1>
+                    {
+                        dashboardUser?.status === 'fraud' && <p className="text-3xl text-red-500 font-bold my-5">You can not add property because you have allegation of being fraud.</p>
+                    }
                 </div>
                 <div className="card w-full shrink-0">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -103,7 +115,9 @@ const AddProperty = () => {
                         </div>
 
                         <div className="form-control mt-6">
-                            <button className="btn bg-green-500">Add</button>
+                            {
+                                dashboardUser?.status === 'fraud'? <button disabled className="btn">Add</button>: <button className="btn bg-green-500">Add</button>
+                            }
                         </div>
                     </form>
                 </div>
