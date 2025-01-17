@@ -6,11 +6,12 @@ import { IoIosAddCircle } from 'react-icons/io';
 import { MdAddPhotoAlternate, MdHomeWork, MdRateReview } from 'react-icons/md';
 import { SiSellfy } from 'react-icons/si';
 import { NavLink, Outlet } from 'react-router-dom';
+import useAdmin from '../Hooks/useAdmin';
+import useAgent from '../Hooks/useAgent';
 
 const Dashboard = () => {
-    const normalUser = false;
-    const isAgent = true;
-    const isAdmin = false;
+    const [isAdmin] = useAdmin();
+    const [isAgent] = useAgent();
 
     return (
         <div className='flex flex-col lg:flex-row'>
@@ -18,66 +19,62 @@ const Dashboard = () => {
             <div className="w-80 min-h-screen bg-green-500">
                 <ul className='menu p-1'>
                     {
-                        normalUser && <>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/myProfile"><AiFillProfile />My Profile</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/wishlist"><FaClipboardList />Wishlist</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/propertyBought"><AiFillPropertySafety />Property Bought</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/myReview"><MdRateReview />My Reviews</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
-                            </li>
-                        </>
-                    }
-                    {
-
-                        isAgent && <>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/agentProfile"><AiFillProfile />Agent Profile</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/addProperty"><IoIosAddCircle />Add Property</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/myAddedProperties"><MdAddPhotoAlternate />My Added Properties</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/mySoldProperties"><SiSellfy />My Sold Properties</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/myRequestedProperties"><GoHomeFill />My Requested Properties</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
-                            </li>
-                        </>
-
-                    }
-                    {
-                        isAdmin && <>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/adminProfile"><AiFillProfile />Admin Profile</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/manageProperties"><AiFillPropertySafety />Manage Properties</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/manageUsers"><FaUserFriends />Manage Users</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/manageReview"><MdRateReview />Manage Reviews</NavLink>
-                            </li>
-                            <li className='text-xl font-bold'>
-                                <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
-                            </li>
-                        </>
+                        isAdmin == true || isAgent == true ?
+                            <>
+                                isAdmin && <>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/adminProfile"><AiFillProfile />Admin Profile</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/manageProperties"><AiFillPropertySafety />Manage Properties</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/manageUsers"><FaUserFriends />Manage Users</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/manageReview"><MdRateReview />Manage Reviews</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
+                                    </li>
+                                </>
+                                isAgent && <>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/agentProfile"><AiFillProfile />Agent Profile</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/addProperty"><IoIosAddCircle />Add Property</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/myAddedProperties"><MdAddPhotoAlternate />My Added Properties</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/mySoldProperties"><SiSellfy />My Sold Properties</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/dashboard/myRequestedProperties"><GoHomeFill />My Requested Properties</NavLink>
+                                    </li>
+                                    <li className='text-xl font-bold'>
+                                        <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
+                                    </li>
+                                </>
+                            </> : <>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/myProfile"><AiFillProfile />My Profile</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/wishlist"><FaClipboardList />Wishlist</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/propertyBought"><AiFillPropertySafety />Property Bought</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/myReview"><MdRateReview />My Reviews</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
+                                </li>
+                            </>
                     }
                 </ul>
             </div>
