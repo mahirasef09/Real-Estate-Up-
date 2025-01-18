@@ -1,9 +1,11 @@
 import React from 'react';
 import VerifiedPropertyCard from '../../Components/verifiedPropertyCard';
-import { useQuery } from '@tanstack/react-query';
+import useAllProperties from '../../Hooks/useAllProperties';
 
 const AllProperties = () => {
-    // const laptops = allData.filter(laptop => laptop.category === "Laptop");
+    const [allProperties] = useAllProperties();
+    const verifiedProperties = allProperties.filter(property => property.status === "verified");
+
     return (
         <div>
             <div className="text-center py-5">

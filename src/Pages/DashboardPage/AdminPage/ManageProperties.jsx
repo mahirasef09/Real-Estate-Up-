@@ -1,17 +1,11 @@
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAllProperties from '../../../Hooks/useAllProperties';
 
 const ManageProperties = () => {
-    const axiosSecure = useAxiosSecure();
-    const { data: allProperties = [], refetch } = useQuery({
-        queryKey: ['allProperties'],
-        queryFn: async () => {
-            const res = await axiosSecure.get(`/allProperties`);
-            return res.data;
-        }
-    });
+    const axiosSecure = useAxiosSecure()
+    const [allProperties] = useAllProperties();
 
     const handleMakeVerify = (property) => {
         Swal.fire({
