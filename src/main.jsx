@@ -30,6 +30,7 @@ import AdminProfile from './Pages/DashboardPage/AdminPage/AdminProfile';
 import ManageProperties from './Pages/DashboardPage/AdminPage/ManageProperties';
 import Welcome from './Components/Welcome';
 import ManageUsers from './Pages/DashboardPage/AdminPage/ManageUsers';
+import PropertyDetails from './Components/PropertyDetails';
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,11 @@ const router = createBrowserRouter([
       {
         path: "/allProperties",
         element: <AllProperties></AllProperties>
+      },
+      {
+        path: "/details/:id",
+        element: <PropertyDetails></PropertyDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
       },
       {
         path: "/signIn",

@@ -3,7 +3,7 @@ import VerifiedPropertyCard from '../../Components/verifiedPropertyCard';
 import useAllProperties from '../../Hooks/useAllProperties';
 
 const AllProperties = () => {
-    const [allProperties] = useAllProperties();
+    const [allProperties,] = useAllProperties();
     const verifiedProperties = allProperties.filter(property => property.status === "verified");
 
     return (
@@ -14,7 +14,7 @@ const AllProperties = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
                     {
-                        verifiedProperties.map(property => <VerifiedPropertyCard property={property}></VerifiedPropertyCard>)
+                        verifiedProperties.map(property => <VerifiedPropertyCard key={property._id} property={property}></VerifiedPropertyCard>)
                     }
                 </div>
             </div>

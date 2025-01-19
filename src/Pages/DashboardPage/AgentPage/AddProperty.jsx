@@ -26,20 +26,28 @@ const AddProperty = () => {
 
     const onSubmit = async (data) => {
 
-        const imageFile = { image: data.image[0] }
-        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+        const propertyImageFile = { image: data.propertyImage[0] }
+        const agentImageFile = { image: data.agentImage[0] }
+        const res1 = await axiosPublic.post(image_hosting_api, propertyImageFile, {
             headers: {
                 'content-type': 'multipart/form-data'
             }
         });
-        if (res.data.success) {
-            const newProperty = { 
+        const res2 = await axiosPublic.post(image_hosting_api, agentImageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+        if (res1.data.success && res2.data.success) {
+            const newProperty = {
                 title: data.title,
                 location: data.location,
-                image: res.data.data.display_url,
+                propertyImage: res1.data.data.display_url,
+                description: data.description,
                 priceRange: data.priceRange,
+                agentImage: res2.data.data.display_url,
                 adderEmail: data.adderEmail,
-                adderName: data.adderName 
+                adderName: data.adderName
             }
 
             const propertyRes = await axiosSecure.post('/property', newProperty);
@@ -107,16 +115,30 @@ const AddProperty = () => {
                             <input type="text" {...register('priceRange', { required: true })} placeholder="Price Range" className="input input-bordered" required />
                         </div>
 
-                        <div className="form-control flex-1">
+                        <div className="form-control">
                             <label className="label">
-                                <span className="label-text font-bold">Image</span>
+                                <span className="label-text font-bold">Description</span>
                             </label>
-                            <input type="file" {...register('image', { required: true })} placeholder="Image" className="file-input w-full max-w-xs" required />
+                            <input type="text" {...register('description', { required: true })} placeholder="Description" className="input input-bordered" required />
                         </div>
 
+                        <div className="form-control flex-1">
+                            <label className="label">
+                                <span className="label-text font-bold">Property's Image</span>
+                            </label>
+                            <input type="file" {...register('propertyImage', { required: true })} placeholder="Property's Image" className="file-input w-full max-w-xs" required />
+                        </div>
+
+                        <div className="form-control flex-1">
+                            <label className="label">
+                                <span className="label-text font-bold">Agent's Image</span>
+                            </label>
+                            <input type="file" {...register('agentImage', { required: true })} placeholder="Agent's Image" className="file-input w-full max-w-xs" required />
+                        </div>
+                        
                         <div className="form-control mt-6">
                             {
-                                dashboardUser?.status === 'fraud'? <button disabled className="btn">Add</button>: <button className="btn bg-green-500">Add</button>
+                                dashboardUser?.status === 'fraud' ? <button disabled className="btn">Add</button> : <button className="btn bg-green-500">Add</button>
                             }
                         </div>
                     </form>

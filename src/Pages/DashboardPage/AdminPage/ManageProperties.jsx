@@ -5,7 +5,7 @@ import useAllProperties from '../../../Hooks/useAllProperties';
 
 const ManageProperties = () => {
     const axiosSecure = useAxiosSecure()
-    const [allProperties] = useAllProperties();
+    const [allProperties, refetch] = useAllProperties();
 
     const handleMakeVerify = (property) => {
         Swal.fire({
