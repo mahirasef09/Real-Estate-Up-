@@ -31,6 +31,7 @@ import ManageProperties from './Pages/DashboardPage/AdminPage/ManageProperties';
 import Welcome from './Components/Welcome';
 import ManageUsers from './Pages/DashboardPage/AdminPage/ManageUsers';
 import PropertyDetails from './Components/PropertyDetails';
+import Wishlist from './Pages/DashboardPage/UserPage/Wishlist';
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myProfile",
         element: <MyProfile></MyProfile>
+      },
+      {
+        path: "/dashboard/wishlist",
+        element: <Wishlist></Wishlist>
       },
 
       // Agent routes

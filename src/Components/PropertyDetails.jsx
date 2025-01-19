@@ -1,8 +1,47 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const PropertyDetails = () => {
+    const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
     const property = useLoaderData();
-    const { _id, propertyImage, title, location, description, priceRange, adderName, adderEmail, status } = property;
+    const { propertyImage, title, location, description, priceRange, adderName, adderEmail, status } = property;
+
+    const handleWishlist = async (property) => {
+        const wishProperty = {
+            propertyId: property._id,
+            propertyImage: property.propertyImage,
+            title: property.title,
+            location: property.location,
+            description: property.description,
+            priceRange: property.priceRange,
+            status: property.status,
+            agentImage: property.agentImage,
+            agentName: property.adderName,
+            agentEmail: property.adderEmail,
+        }
+        const wishlistRes = await axiosSecure.post('/property/wishlist', wishProperty);
+        if (wishlistRes.data.insertedId) {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `${property.title} is added to your wishlist`,
+                showConfirmButton: false,
+                timer: 2500
+            });
+            navigate('/dashboard/wishlist');
+        }
+        else{
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: `${property.title} is already in your wishlist`,
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+    }
 
     return (
         <div>
@@ -34,7 +73,7 @@ const PropertyDetails = () => {
                     </form>
                     <div className="card-actions justify-end">
 
-                        <button className="btn btn-outline btn-warning">Add to Wishlist</button>
+                        <button onClick={() => handleWishlist(property)} className="btn btn-outline btn-warning">Add to Wishlist</button>
 
                     </div>
                 </div>
