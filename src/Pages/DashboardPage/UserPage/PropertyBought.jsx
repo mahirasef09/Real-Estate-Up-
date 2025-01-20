@@ -10,11 +10,11 @@ const PropertyBought = () => {
     const { data: boughtProperties = [], refetch } = useQuery({
         queryKey: ['boughtProperties'],
         queryFn: async() => {
-            const res = await axiosSecure.get(`/propertyOffered?name=${user?.displayName}`);
+            const res = await axiosSecure.get(`/propertyOffered/buyer?email=${user?.email}`);
             return res.data;
         }
     })
-    console.log(boughtProperties)
+
 
     return (
         <div>

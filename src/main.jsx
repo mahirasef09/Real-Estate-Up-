@@ -34,6 +34,7 @@ import PropertyDetails from './Components/PropertyDetails';
 import Wishlist from './Pages/DashboardPage/UserPage/Wishlist';
 import MakeAnOffer from './Pages/DashboardPage/UserPage/MakeAnOffer';
 import PropertyBought from './Pages/DashboardPage/UserPage/PropertyBought';
+import MyRequestedProperties from './Pages/DashboardPage/AgentPage/MyRequestedProperties';
 
 const queryClient = new QueryClient();
 
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myAddedProperties",
         element: <MyAddedProperties></MyAddedProperties>
+      },
+      {
+        path: "/dashboard/myRequestedProperties",
+        element: <MyRequestedProperties></MyRequestedProperties>
       },
 
       // Admin routes
