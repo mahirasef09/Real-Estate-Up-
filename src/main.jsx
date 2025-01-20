@@ -32,6 +32,8 @@ import Welcome from './Components/Welcome';
 import ManageUsers from './Pages/DashboardPage/AdminPage/ManageUsers';
 import PropertyDetails from './Components/PropertyDetails';
 import Wishlist from './Pages/DashboardPage/UserPage/Wishlist';
+import MakeAnOffer from './Pages/DashboardPage/UserPage/MakeAnOffer';
+import PropertyBought from './Pages/DashboardPage/UserPage/PropertyBought';
 
 const queryClient = new QueryClient();
 
@@ -80,6 +82,15 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/wishlist",
         element: <Wishlist></Wishlist>
+      },
+      {
+        path: "/dashboard/makeAnOffer/:id",
+        element: <MakeAnOffer></MakeAnOffer>,
+        loader: ({params}) => fetch(`http://localhost:5000/wishlist/${params.id}`)
+      },
+      {
+        path: "/dashboard/propertyBought",
+        element: <PropertyBought></PropertyBought>
       },
 
       // Agent routes

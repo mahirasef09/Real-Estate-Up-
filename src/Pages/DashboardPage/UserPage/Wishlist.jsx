@@ -3,8 +3,7 @@ import useWishlists from '../../../Hooks/useWishlist';
 import WishlistCard from '../../../Components/wishlistCard';
 
 const Wishlist = () => {
-    const [allWishlists,] = useWishlists();
-
+    const [myWishlists,] = useWishlists();
     return (
         <div>
             <div className="text-center py-5">
@@ -13,7 +12,7 @@ const Wishlist = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-5'>
                     {
-                        allWishlists.map(wishlist => <WishlistCard key={wishlist._id} wishlist={wishlist}></WishlistCard>)
+                        myWishlists.map(wishlist => <WishlistCard key={wishlist._id} wishlist={wishlist}></WishlistCard>)
                     }
                 </div>
             </div>

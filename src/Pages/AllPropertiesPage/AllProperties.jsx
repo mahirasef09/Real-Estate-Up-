@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import VerifiedPropertyCard from '../../Components/verifiedPropertyCard';
 import useAllProperties from '../../Hooks/useAllProperties';
 
