@@ -38,6 +38,7 @@ import MyRequestedProperties from './Pages/DashboardPage/AgentPage/MyRequestedPr
 import Payment from './Pages/DashboardPage/UserPage/Payment';
 import MySoldProperties from './Pages/DashboardPage/AgentPage/MySoldProperties';
 import MyReviews from './Pages/DashboardPage/UserPage/MyReviews';
+import ManageReviews from './Pages/DashboardPage/AdminPage/ManageReviews';
 
 const queryClient = new QueryClient();
 
@@ -144,6 +145,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manageUsers",
         element: <ManageUsers></ManageUsers>
+      },
+      {
+        path: "/dashboard/manageReviews",
+        element: <ManageReviews></ManageReviews>
       },
     ]
   },

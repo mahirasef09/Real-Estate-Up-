@@ -1,12 +1,18 @@
 import React from 'react';
-import useReviews from '../Hooks/useReviews';
-import Swal from 'sweetalert2';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
+import { useQuery } from '@tanstack/react-query';
 
-const ReviewCard = ({ review }) => {
-    const [, refetch] = useReviews();
+const ManageReviewCard = ({ review }) => {
+    const { data: allReviews = [], refetch } = useQuery({
+        queryKey: ['allReviews'],
+        queryFn: async() => {
+            const res = await axiosSecure.get(`/reviews`);
+            return res.data;
+        }
+    });
     const axiosSecure = useAxiosSecure();
-    const { _id, title, agentName, reviewDescription, reviewTime } = review;
+    const { _id, title, reviewerImage, reviewerName, reviewDescription, reviewerEmail } = review;
 
     const handleDeleteReview = async (id) => {
         Swal.fire({
@@ -26,7 +32,7 @@ const ReviewCard = ({ review }) => {
                         Swal.fire({
                             position: "center",
                             icon: "success",
-                            title: `Your Review has been deleted`,
+                            title: `User Review has been deleted`,
                             showConfirmButton: false,
                             timer: 2500
                         });
@@ -36,24 +42,28 @@ const ReviewCard = ({ review }) => {
                 }
             });
     }
-
     return (
         <div>
-            <div className="card bg-base-100 w-64 h-[350px] shadow-xl">
+            <div className="card bg-base-100 w-72 h-[500px] shadow-xl">
                 <div className="card-body">
-                    <p className="font-bold">
-                        Title:<span> {title}</span>
+                    <figure>
+                        <img
+                        className='rounded-lg'
+                            src={reviewerImage}
+                            alt="Shoes" />
+                    </figure>
+                    <p className="">
+                        <span className='font-bold'>Reviewer Name:</span> {reviewerName}
                     </p>
                     <p className="">
-                        <span className='font-bold'>Agent Name:</span> {agentName}
+                        <span className='font-bold'>Reviewer Email:</span> {reviewerEmail}
                     </p>
                     <p className="">
                         <span className='font-bold'>Review:</span> {reviewDescription}
                     </p>
                     <p className="">
-                        <span className='font-bold'>Review Time:</span> {reviewTime}
+                        <span className='font-bold'>Title:</span> {title}
                     </p>
-
                     <div className="card-actions justify-end">
 
                         <button onClick={() => handleDeleteReview(_id)} className="btn btn-outline btn-warning">Delete</button>
@@ -65,4 +75,4 @@ const ReviewCard = ({ review }) => {
     );
 };
 
-export default ReviewCard;
+export default ManageReviewCard;
