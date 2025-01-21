@@ -71,7 +71,7 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/propertyBought"><AiFillPropertySafety />Property Bought</NavLink>
                             </li>
                             <li className='text-xl font-bold'>
-                                <NavLink to="/dashboard/myReview"><MdRateReview />My Reviews</NavLink>
+                                <NavLink to="/dashboard/myReviews"><MdRateReview />My Reviews</NavLink>
                             </li>
                             <li className='text-xl font-bold'>
                                 <NavLink to="/"><MdHomeWork />Back to Home</NavLink>

@@ -4,8 +4,12 @@ import Swal from "sweetalert2";
 import useAuth from "../Hooks/useAuth";
 import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
+import { useForm } from "react-hook-form";
+import moment from "moment";
 
 const PropertyDetails = () => {
+    const { register, handleSubmit, reset } = useForm();
+
     const [isAdmin] = useAdmin();
     const [isAgent] = useAgent();
     const { user } = useAuth();
@@ -14,6 +18,31 @@ const PropertyDetails = () => {
     const property = useLoaderData();
     const { propertyImage, title, location, description, priceRange, adderName, adderEmail, status } = property;
 
+    const onSubmit = async (data) => {
+        const newReview = {
+            title: title,
+            location: location,
+            reviewDescription: data.review,
+            reviewerImage: user?.photoURL,
+            reviewerEmail: user?.email,
+            reviewerName: user?.displayName,
+            agentName: adderName,
+            reviewTime: moment().format('D/MM/YYYY, h:mm:ss a')
+        }
+
+        const reviewRes = await axiosSecure.post('/reviews', newReview);
+        if (reviewRes.data.insertedId) {
+            reset();
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: `Your Review is added`,
+                showConfirmButton: false,
+                timer: 2500
+            });
+            navigate('/dashboard/myReviews');
+        }
+    }
     const handleWishlist = async (property) => {
         if (isAdmin == true || isAgent == true) {
             Swal.fire({
@@ -79,11 +108,12 @@ const PropertyDetails = () => {
                     <p><span className="font-bold">Agent' Name:</span> {adderName}</p>
                     <p><span className="font-bold">Agent's Email:</span> {adderEmail}</p>
                     <p className="uppercase"><span className="font-bold">Status:</span> {status}</p>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <fieldset className="form-control w-80">
                             <div className="join">
                                 <input
                                     type="text"
+                                    {...register('review', { required: true })}
                                     placeholder="Your Review"
                                     className="input input-bordered join-item" />
                                 <button className="btn bg-green-500 join-item">Add</button>
