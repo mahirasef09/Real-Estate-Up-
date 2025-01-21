@@ -65,11 +65,14 @@ const NavBar = () => {
                                     <div className="hidden md:flex gap-2 items-center" data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName} data-tooltip-place="left">
                                         <div className="dropdown dropdown-end">
                                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+
                                                 <div className="w-10 rounded-full">
                                                     <img
                                                         alt="User"
                                                         src={user?.photoURL} />
                                                 </div>
+                                                
+
                                             </div>
                                             {/* <ul
                                                 tabIndex={0}
@@ -84,7 +87,8 @@ const NavBar = () => {
                                     <FaUserTie className="text-3xl text-green-700"></FaUserTie>
                             }
                         </div>
-                        <div>
+                        <h2 className="text-2xl font-bold">{user?.displayName}</h2>
+                        <div className="mr-6">
                             {
                                 user && user?.email ? <button onClick={userSignOut} className="btn bg-green-500 hover:bg-accent font-bold">Sign Out</button> :
                                     <div className="flex flex-col md:flex-row gap-2">
@@ -92,7 +96,7 @@ const NavBar = () => {
                                     </div>
                             }
                         </div>
-                        <button onClick={() => darkModeHandler()} className="mr-5 btn bg-green-500 hover:bg-accent">
+                        {/* <button onClick={() => darkModeHandler()} className="mr-5 btn bg-green-500 hover:bg-accent">
                             {
 
                                 dark && <IoSunny />
@@ -100,7 +104,7 @@ const NavBar = () => {
                             {
                                 !dark && <IoMoon />
                             }
-                        </button>
+                        </button> */}
                         <Tooltip id="my-tooltip" />
                     </div>
                 </div>

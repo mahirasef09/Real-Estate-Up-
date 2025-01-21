@@ -110,7 +110,8 @@ const ManageUsers = () => {
             });
     };
 
-    const handleDeleteUser = (DBuser) => {
+    const handleDeleteUser = async (DBuser) => {
+        const { _id, email } = DBuser;
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -122,40 +123,34 @@ const ManageUsers = () => {
         })
             .then(async (result) => {
                 if (result.isConfirmed) {
-                    const auth = getAuth();
-                    const firebaseUser = auth.currentUser;
-                    console.log(firebaseUser);
-                    // deleteUser(currentUser)
-                    // .then(() => {
-                    //     Swal.fire({
-                    //         position: "center",
-                    //         icon: "success",
-                    //         title: `${DBuser.name} has been deleted from firebase`,
-                    //         showConfirmButton: false,
-                    //         timer: 2500
-                    //     });
-                    // }).catch((err) => {
-                    //     Swal.fire({
-                    //         position: "center",
-                    //         icon: "success",
-                    //         title: err,
-                    //         showConfirmButton: false,
-                    //         timer: 2500
-                    //     });
-                    // });
+
+                    try {
+                        const response = await axiosSecure.post('/delete-user', { email });
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: `${email} has been deleted from firebase`,
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
+                    }
+                    catch (err) {
+                        console.log('Error deleting user:', err);
+                    }
 
 
-                    // const res = await axiosSecure.delete(`/allUsers?id=${DBuser._id}`);
-                    // if (res.data.deletedCount > 0) {
-                    //     refetch();
-                    //     Swal.fire({
-                    //         position: "center",
-                    //         icon: "success",
-                    //         title: `${DBuser.name} has been deleted`,
-                    //         showConfirmButton: false,
-                    //         timer: 2500
-                    //     });
-                    // }
+
+                    const res = await axiosSecure.delete(`/allUsers?id=${_id}`);
+                    if (res.data.deletedCount > 0) {
+                        refetch();
+                        // Swal.fire({
+                        //     position: "top-end",
+                        //     icon: "success",
+                        //     title: `${email} has been deleted`,
+                        //     showConfirmButton: false,
+                        //     timer: 2500
+                        // });
+                    }
                 }
             });
     }
