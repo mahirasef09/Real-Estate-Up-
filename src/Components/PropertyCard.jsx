@@ -23,7 +23,7 @@ const PropertyCard = ({ property }) => {
         })
         .then(async (result) => {
             if (result.isConfirmed) {
-                const res = await axiosSecure.delete(`/property?id=${id}`);
+                const res = await axiosSecure.delete(`/property/${id}`);
                 if (res.data.deletedCount > 0) {
                     refetch();
                     Swal.fire({
@@ -42,7 +42,7 @@ const PropertyCard = ({ property }) => {
 
     return (
         <div>
-            <div className="card bg-base-100 w-64 shadow-xl">
+            <div className="card bg-base-100 w-64 h-[450px] shadow-xl">
                 <figure>
                     <img
                         src={propertyImage}

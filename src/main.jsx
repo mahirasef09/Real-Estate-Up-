@@ -35,6 +35,8 @@ import Wishlist from './Pages/DashboardPage/UserPage/Wishlist';
 import MakeAnOffer from './Pages/DashboardPage/UserPage/MakeAnOffer';
 import PropertyBought from './Pages/DashboardPage/UserPage/PropertyBought';
 import MyRequestedProperties from './Pages/DashboardPage/AgentPage/MyRequestedProperties';
+import Payment from './Pages/DashboardPage/UserPage/Payment';
+import MySoldProperties from './Pages/DashboardPage/AgentPage/MySoldProperties';
 
 const queryClient = new QueryClient();
 
@@ -93,6 +95,10 @@ const router = createBrowserRouter([
         path: "/dashboard/propertyBought",
         element: <PropertyBought></PropertyBought>
       },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>
+      },
 
       // Agent routes
       {
@@ -111,6 +117,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/myAddedProperties",
         element: <MyAddedProperties></MyAddedProperties>
+      },
+      {
+        path: "/dashboard/mySoldProperties",
+        element: <MySoldProperties></MySoldProperties>
       },
       {
         path: "/dashboard/myRequestedProperties",

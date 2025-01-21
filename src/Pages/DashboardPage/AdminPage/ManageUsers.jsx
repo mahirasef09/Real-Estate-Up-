@@ -3,8 +3,10 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { getAuth, deleteUser } from 'firebase/auth';
+import useAuth from '../../../Hooks/useAuth';
 
 const ManageUsers = () => {
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: allUsers = [], refetch } = useQuery({
         queryKey: ['allUsers'],
@@ -108,7 +110,7 @@ const ManageUsers = () => {
             });
     };
 
-    const handleDeleteUser = (user) => {
+    const handleDeleteUser = (DBuser) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -120,26 +122,40 @@ const ManageUsers = () => {
         })
             .then(async (result) => {
                 if (result.isConfirmed) {
-                    // const auth = getAuth();
-                    // const currentUser = auth.user;
-
-                    // deleteUser(currentUser).then(() => {
-                    //     // User deleted.
-                    // }).catch((error) => {
-                    //     // An error ocurred
-                    //     // ...
+                    const auth = getAuth();
+                    const firebaseUser = auth.currentUser;
+                    console.log(firebaseUser);
+                    // deleteUser(currentUser)
+                    // .then(() => {
+                    //     Swal.fire({
+                    //         position: "center",
+                    //         icon: "success",
+                    //         title: `${DBuser.name} has been deleted from firebase`,
+                    //         showConfirmButton: false,
+                    //         timer: 2500
+                    //     });
+                    // }).catch((err) => {
+                    //     Swal.fire({
+                    //         position: "center",
+                    //         icon: "success",
+                    //         title: err,
+                    //         showConfirmButton: false,
+                    //         timer: 2500
+                    //     });
                     // });
-                    const res = await axiosSecure.delete(`/allUsers?id=${user._id}`);
-                    if (res.data.deletedCount > 0) {
-                        refetch();
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: `${user.name} has been deleted`,
-                            showConfirmButton: false,
-                            timer: 2500
-                        });
-                    }
+
+
+                    // const res = await axiosSecure.delete(`/allUsers?id=${DBuser._id}`);
+                    // if (res.data.deletedCount > 0) {
+                    //     refetch();
+                    //     Swal.fire({
+                    //         position: "center",
+                    //         icon: "success",
+                    //         title: `${DBuser.name} has been deleted`,
+                    //         showConfirmButton: false,
+                    //         timer: 2500
+                    //     });
+                    // }
                 }
             });
     }

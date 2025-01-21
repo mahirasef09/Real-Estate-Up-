@@ -15,7 +15,7 @@ const MyAddedProperties = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
                     {
-                        properties.map(property => <PropertyCard property={property}></PropertyCard>)
+                        properties.map(property => <PropertyCard key={property._id} property={property}></PropertyCard>)
                     }
                 </div>
             </div>
