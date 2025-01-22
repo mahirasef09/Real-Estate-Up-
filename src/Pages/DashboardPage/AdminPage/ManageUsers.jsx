@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import { getAuth, deleteUser } from 'firebase/auth';
 import useAuth from '../../../Hooks/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const ManageUsers = () => {
     const { user } = useAuth();
@@ -157,6 +158,9 @@ const ManageUsers = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | Manage Users</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">Manage Users</h1>
             </div>

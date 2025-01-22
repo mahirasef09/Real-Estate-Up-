@@ -1,11 +1,15 @@
 import React from 'react';
 import useReviews from '../../../Hooks/useReviews';
 import ReviewCard from '../../../Components/ReviewCard';
+import { Helmet } from 'react-helmet-async';
 
 const MyReviews = () => {
-    const [reviews, ] = useReviews();
+    const [reviews,] = useReviews();
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | My Reviews</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">My Reviews</h1>
             </div>

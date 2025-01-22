@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
-import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MySoldProperties = () => {
     const { user } = useAuth();
@@ -13,13 +13,19 @@ const MySoldProperties = () => {
             const res = await axiosSecure.get(`/payments/${user?.email}`);
             return res.data;
         }
-    })
+    });
+
+    const totalPrice = soldProperties.reduce((total, item) => total + parseInt(item.soldPrice), 0)
 
 
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | My Sold Properties</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">My Sold Properties</h1>
+                <p className='font-bold my-3'>Total Property Sold Amount: <span className='text-green-500'>${totalPrice}</span></p>
             </div>
             <div className="overflow-x-auto">
                 <table className="table  w-full">
@@ -63,7 +69,7 @@ const MySoldProperties = () => {
                                     }
                                 </td>
                                 <td>
-                                    {
+                                    ${
                                         property.soldPrice
                                     }
                                 </td>

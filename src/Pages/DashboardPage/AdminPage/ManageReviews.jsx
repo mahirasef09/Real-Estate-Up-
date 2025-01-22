@@ -2,18 +2,22 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import ManageReviewCard from '../../../Components/ManageReviewCard';
+import { Helmet } from 'react-helmet-async';
 
 const ManageReviews = () => {
     const axiosSecure = useAxiosSecure();
     const { data: allReviews = [], refetch } = useQuery({
         queryKey: ['allReviews'],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await axiosSecure.get(`/reviews`);
             return res.data;
         }
     });
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | Manage Reviews</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">Manage Reviews</h1>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
 import useAllProperties from '../../../Hooks/useAllProperties';
+import { Helmet } from 'react-helmet-async';
 
 const ManageProperties = () => {
     const axiosSecure = useAxiosSecure()
@@ -63,6 +64,9 @@ const ManageProperties = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | Manage Properties</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">Manage Properties</h1>
             </div>

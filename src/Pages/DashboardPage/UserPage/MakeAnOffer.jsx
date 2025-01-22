@@ -6,6 +6,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import moment from "moment";
 import useAdmin from "../../../Hooks/useAdmin";
 import useAgent from "../../../Hooks/useAgent";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -81,6 +82,9 @@ const MakeAnOffer = () => {
 
     return (
         <div className="min-h-screen">
+            <Helmet>
+                <title>Real Estate Up | Make an offer</title>
+            </Helmet>
             <div className='lg:w-3/4 mx-auto bg-base-100'>
                 <div className="text-center pt-5">
                     <h1 className="text-5xl font-extrabold">Make an offer!</h1>

@@ -1,7 +1,14 @@
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
+import useAuth from '../Hooks/useAuth';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const SocialSignIn = () => {
+    const {signInUserWithGoogle, setUser} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
+
     const handleGoogleSignIn = () => {
             signInUserWithGoogle()
                 .then(result => {
@@ -23,7 +30,6 @@ const SocialSignIn = () => {
                         icon: 'error',
                         confirmButtonText: 'Oops'
                     });
-                    // setLoading(false);
                 })
         }
 

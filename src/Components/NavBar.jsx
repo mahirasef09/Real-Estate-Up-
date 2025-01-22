@@ -59,6 +59,7 @@ const NavBar = () => {
                 </div>
                 <div className="navbar-end">
                     <div className="flex gap-2 items-center">
+
                         <div>
                             {
                                 user && user?.email ?
@@ -71,7 +72,7 @@ const NavBar = () => {
                                                         alt="User"
                                                         src={user?.photoURL} />
                                                 </div>
-                                                
+
 
                                             </div>
                                             {/* <ul
@@ -87,7 +88,8 @@ const NavBar = () => {
                                     <FaUserTie className="text-3xl text-green-700"></FaUserTie>
                             }
                         </div>
-                        <h2 className="text-2xl font-bold">{user?.displayName}</h2>
+                        <h2 className="hidden md:flex md:text-sm lg:text-xl font-bold">{user?.displayName}</h2>
+
                         <div className="mr-6">
                             {
                                 user && user?.email ? <button onClick={userSignOut} className="btn bg-green-500 hover:bg-accent font-bold">Sign Out</button> :

@@ -3,13 +3,14 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import BoughtCard from '../../../Components/BoughtCard';
 import useAuth from '../../../Hooks/useAuth';
 import { useQuery } from '@tanstack/react-query';
+import { Helmet } from 'react-helmet-async';
 
 const PropertyBought = () => {
-    const {user} = useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const { data: boughtProperties = [], refetch } = useQuery({
         queryKey: ['boughtProperties'],
-        queryFn: async() => {
+        queryFn: async () => {
             const res = await axiosSecure.get(`/propertyOffered/buyer?email=${user?.email}`);
             return res.data;
         }
@@ -18,6 +19,9 @@ const PropertyBought = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | Property Bought Page</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">Property Bought</h1>
             </div>

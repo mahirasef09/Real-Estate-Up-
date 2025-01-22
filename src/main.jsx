@@ -39,6 +39,8 @@ import Payment from './Pages/DashboardPage/UserPage/Payment';
 import MySoldProperties from './Pages/DashboardPage/AgentPage/MySoldProperties';
 import MyReviews from './Pages/DashboardPage/UserPage/MyReviews';
 import ManageReviews from './Pages/DashboardPage/AdminPage/ManageReviews';
+import PrivateRoute from './Routes/PrivateRoute';
+import AdvertiseProperty from './Pages/DashboardPage/AdminPage/AdvertiseProperty';
 
 const queryClient = new QueryClient();
 
@@ -54,11 +56,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/allProperties",
-        element: <AllProperties></AllProperties>
+        element: <PrivateRoute>
+          <AllProperties></AllProperties>
+        </PrivateRoute>
       },
       {
         path: "/details/:id",
-        element: <PropertyDetails></PropertyDetails>,
+        element: <PrivateRoute>
+          <PropertyDetails></PropertyDetails>
+        </PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
       },
       {
@@ -73,7 +79,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute>
+      <Dashboard></Dashboard>
+    </PrivateRoute>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
@@ -149,6 +157,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/manageReviews",
         element: <ManageReviews></ManageReviews>
+      },
+      {
+        path: "/dashboard/advertiseProperty",
+        element: <AdvertiseProperty></AdvertiseProperty>
       },
     ]
   },

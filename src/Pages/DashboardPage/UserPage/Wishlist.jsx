@@ -1,11 +1,15 @@
 import React from 'react';
 import useWishlists from '../../../Hooks/useWishlist';
 import WishlistCard from '../../../Components/wishlistCard';
+import { Helmet } from 'react-helmet-async';
 
 const Wishlist = () => {
     const [myWishlists,] = useWishlists();
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | My Wishlist</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">My Wishlist</h1>
             </div>

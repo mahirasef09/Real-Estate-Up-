@@ -61,10 +61,10 @@ const SignIn = () => {
                         <h3 className='text-2xl font-extrabold text-center'>Welcome Back!</h3>
                         <form onSubmit={handleSubmit} className="card-body">
                             <div className="form-control">
-                                <input type="email" name="email" placeholder="Email" className="input input-bordered" required />
+                                <input type="email" name="email" placeholder="Email" className="input input-bordered" required/>
                             </div>
                             <div className="relative form-control">
-                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Password" className="input input-bordered" required />
+                                <input type={showPassword ? "text" : "password"} name="password" placeholder="Password" className="input input-bordered" required/>
                                 <p
                                     onClick={() => setShowPassword(!showPassword)}
                                     className='btn btn-xs absolute right-4 top-3'>

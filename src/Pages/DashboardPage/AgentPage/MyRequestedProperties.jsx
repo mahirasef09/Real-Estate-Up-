@@ -3,6 +3,7 @@ import React from 'react';
 import useAuth from '../../../Hooks/useAuth';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const MyRequestedProperties = () => {
     const { user } = useAuth();
@@ -71,6 +72,9 @@ const MyRequestedProperties = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Real Estate Up | My Requested Properties</title>
+            </Helmet>
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">My Requested Properties</h1>
             </div>
