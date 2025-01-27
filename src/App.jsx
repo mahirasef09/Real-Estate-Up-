@@ -8,7 +8,7 @@ function App() {
   const noHeaderFooter = location.pathname.includes('signIn') || location.pathname.includes('signUp');
 
   return (
-    <div className='bg-white dark:bg-black space-y-3'>
+    <div className='space-y-5'>
       <header className='sticky top-0 z-50 bg-white shadow-md'>
         {noHeaderFooter || <NavBar></NavBar>}
       </header>

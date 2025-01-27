@@ -3,17 +3,17 @@ import useAxiosSecure from "./useAxiosSecure";
 import useAuth from "./useAuth";
 
 const useReviews = () => {
-    const { user} = useAuth();
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const { data: reviews = [], refetch } = useQuery({
-        queryKey: ['reviews'],
+    const { data: myReviews = [], refetch } = useQuery({
+        queryKey: ['myReviews'],
         queryFn: async() => {
-            const res = await axiosSecure.get(`/reviews/${user?.email}`);
+            const res = await axiosSecure.get(`/myReviews?email=${user.email}`);
             return res.data;
         }
     });
 
-    return [reviews, refetch]
+    return [myReviews, refetch]
 };
 
 export default useReviews;

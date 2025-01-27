@@ -4,7 +4,7 @@ import ReviewCard from '../../../Components/ReviewCard';
 import { Helmet } from 'react-helmet-async';
 
 const MyReviews = () => {
-    const [reviews,] = useReviews();
+    const [myReviews,] = useReviews();
     return (
         <div>
             <Helmet>
@@ -16,7 +16,7 @@ const MyReviews = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
                     {
-                        reviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
+                        myReviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
                     }
                 </div>
             </div>

@@ -13,11 +13,11 @@ const Advertisement = () => {
 
     return (
         <div>
-            <div className="text-center">
+            <div className="text-center my-10">
                 <h1 className="text-5xl font-extrabold">Advertised Properties</h1>
             </div>
-            <div className='flex justify-center'>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
+            <div className='flex justify-between'>
+                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 my-5'>
                     {
                         advertisedProperties.map(property => <VerifiedPropertyCard key={property._id} property={property}></VerifiedPropertyCard>)
                     }

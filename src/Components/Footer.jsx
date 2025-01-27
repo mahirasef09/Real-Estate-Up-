@@ -3,7 +3,7 @@ import { MdHomeWork } from 'react-icons/md';
 
 const Footer = () => {
     return (
-        <div>
+        <div className='mt-10'>
             <footer className="footer bg-base-200 text-base-content p-10">
                 <aside>
                     <h2>

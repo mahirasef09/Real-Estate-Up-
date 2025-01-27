@@ -64,8 +64,8 @@ const AllProperties = () => {
                 <button onClick={handleSortDescending} className="btn btn-sm bg-green-500">Sort by Descending</button>
             </div>
 
-            <div className='flex justify-center'>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
+            <div className='flex justify-between'>
+                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 my-5'>
                     {
                         verifiedProperties.map(property => <VerifiedPropertyCard key={property._id} property={property}></VerifiedPropertyCard>)
                     }

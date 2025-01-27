@@ -136,7 +136,13 @@ const ManageUsers = () => {
                         });
                     }
                     catch (err) {
-                        console.log('Error deleting user:', err);
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: err,
+                            showConfirmButton: false,
+                            timer: 2500
+                        });
                     }
 
 

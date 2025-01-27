@@ -6,20 +6,30 @@ import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
 import { useForm } from "react-hook-form";
 import moment from "moment";
+import { useEffect, useState } from "react";
 
 const PropertyDetails = () => {
     const { register, handleSubmit, reset } = useForm();
-
+    
     const [isAdmin] = useAdmin();
     const [isAgent] = useAgent();
+
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
+
     const property = useLoaderData();
-    const { propertyImage, title, location, description, priceRange, adderName, adderEmail, status } = property;
+    const { _id, propertyImage, title, location, description, priceRange, adderName, adderEmail, status } = property;
+
+    const [allReviews, setAllReviews] = useState([]);
+    useEffect(() => {
+        axiosSecure.get(`/reviews/${_id}`)
+            .then(res => setAllReviews(res.data))
+    }, []);
 
     const onSubmit = async (data) => {
         const newReview = {
+            propertyId: _id,
             title: title,
             location: location,
             reviewDescription: data.review,
@@ -126,6 +136,19 @@ const PropertyDetails = () => {
 
                     </div>
                 </div>
+            </div>
+
+            <div className="text-center my-10">
+                <h1 className="text-5xl font-extrabold">All Reviews</h1>
+            </div>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3'>
+                {
+                    allReviews.map(review =>
+                        <div key={review._id} className="stat bg-gray-100 rounded-lg">
+                            <div className="text-green-500">{review.reviewDescription}</div>
+                            <div className="stat-title">-by {review.reviewerName}</div>
+                        </div>)
+                }
             </div>
         </div>
     );

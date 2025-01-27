@@ -40,6 +40,7 @@ import MySoldProperties from './Pages/DashboardPage/AgentPage/MySoldProperties';
 import MyReviews from './Pages/DashboardPage/UserPage/MyReviews';
 import ManageReviews from './Pages/DashboardPage/AdminPage/ManageReviews';
 import PrivateRoute from './Routes/PrivateRoute';
+import AdminRoute from './Routes/AdminRoute';
 import AdvertiseProperty from './Pages/DashboardPage/AdminPage/AdvertiseProperty';
 
 const queryClient = new QueryClient();
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <PropertyDetails></PropertyDetails>
         </PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/property/${params.id}`)
       },
       {
         path: "/signIn",
@@ -99,7 +100,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/makeAnOffer/:id",
         element: <MakeAnOffer></MakeAnOffer>,
-        loader: ({params}) => fetch(`http://localhost:5000/wishlist/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/wishlist/${params.id}`)
       },
       {
         path: "/dashboard/propertyBought",
@@ -126,7 +127,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/updateAddedProperty/:id",
         element: <UpdateProperty></UpdateProperty>,
-        loader: ({params}) => fetch(`http://localhost:5000/property/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/property/${params.id}`)
       },
       {
         path: "/dashboard/myAddedProperties",
@@ -144,23 +145,33 @@ const router = createBrowserRouter([
       // Admin routes
       {
         path: "/dashboard/adminProfile",
-        element: <AdminProfile></AdminProfile>
+        element: <AdminRoute>
+          <AdminProfile></AdminProfile>
+        </AdminRoute>
       },
       {
         path: "/dashboard/manageProperties",
-        element: <ManageProperties></ManageProperties>
+        element: <AdminRoute>
+          <ManageProperties></ManageProperties>
+        </AdminRoute>
       },
       {
         path: "/dashboard/manageUsers",
-        element: <ManageUsers></ManageUsers>
+        element: <AdminRoute>
+          <ManageUsers></ManageUsers>
+        </AdminRoute>
       },
       {
         path: "/dashboard/manageReviews",
-        element: <ManageReviews></ManageReviews>
+        element: <AdminRoute>
+          <ManageReviews></ManageReviews>
+        </AdminRoute>
       },
       {
         path: "/dashboard/advertiseProperty",
-        element: <AdvertiseProperty></AdvertiseProperty>
+        element: <AdminRoute>
+          <AdvertiseProperty></AdvertiseProperty>
+        </AdminRoute>
       },
     ]
   },
@@ -169,11 +180,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-    <QueryClientProvider client={queryClient}>
-    <HelmetProvider>
-        <RouterProvider router={router} />
-      </HelmetProvider>
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <HelmetProvider>
+          <RouterProvider router={router} />
+        </HelmetProvider>
+      </QueryClientProvider>
     </AuthProvider>
   </StrictMode>,
 )

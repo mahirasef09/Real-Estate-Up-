@@ -1,17 +1,8 @@
 import React from 'react';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
-import { useQuery } from '@tanstack/react-query';
+
 
 const ManageReviewCard = ({ review }) => {
-    const { data: allReviews = [], refetch } = useQuery({
-        queryKey: ['allReviews'],
-        queryFn: async() => {
-            const res = await axiosSecure.get(`/reviews`);
-            return res.data;
-        }
-    });
-    const axiosSecure = useAxiosSecure();
     const { _id, title, reviewerImage, reviewerName, reviewDescription, reviewerEmail } = review;
 
     const handleDeleteReview = async (id) => {

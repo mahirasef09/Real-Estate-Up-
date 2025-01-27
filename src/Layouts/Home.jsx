@@ -1,8 +1,10 @@
 import React from 'react';
 import Banner from '../Pages/HomePage/Banner';
 import Advertisement from '../Pages/HomePage/Advertisement';
-import Reviews from '../Pages/HomePage/Reviews';
 import { Helmet } from 'react-helmet-async';
+import FAQ from '../Pages/HomePage/FAQ';
+import Featured from '../Pages/HomePage/Featured';
+import LatestReviews from '../Pages/HomePage/LatestReviews';
 
 const Home = () => {
     return (
@@ -11,8 +13,10 @@ const Home = () => {
                 <title>Real Estate Up | Home</title>
             </Helmet>
             <Banner></Banner>
+            <Featured></Featured>
             <Advertisement></Advertisement>
-            <Reviews></Reviews>
+            <LatestReviews></LatestReviews>
+            <FAQ></FAQ>
         </div>
     );
 };

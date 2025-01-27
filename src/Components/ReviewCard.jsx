@@ -39,7 +39,7 @@ const ReviewCard = ({ review }) => {
 
     return (
         <div>
-            <div className="card bg-base-100 w-64 h-[350px] shadow-xl">
+            <div className="card bg-gray-100 w-64 h-[350px] shadow-xl">
                 <div className="card-body">
                     <p className="font-bold">
                         Title:<span> {title}</span>
