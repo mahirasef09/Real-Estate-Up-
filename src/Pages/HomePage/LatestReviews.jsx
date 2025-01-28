@@ -20,7 +20,7 @@ const LatestReviews = () => {
             <div className="text-center py-5">
                 <h1 className="text-5xl font-extrabold">Latest Reviews</h1>
             </div>
-            <div className='flex justify-around'>
+            <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
                     {
                         sortedReviews.map(review => <LatestReviewCard key={review._id} review={review}>

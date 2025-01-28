@@ -4,7 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
@@ -26,7 +26,6 @@ const AddProperty = () => {
     });
 
     const onSubmit = async (data) => {
-
         const propertyImageFile = { image: data.propertyImage[0] }
         const agentImageFile = { image: data.agentImage[0] }
         const res1 = await axiosPublic.post(image_hosting_api, propertyImageFile, {
@@ -64,6 +63,7 @@ const AddProperty = () => {
                 });
                 navigate('/dashboard/myAddedProperties');
             }
+
         }
     }
 

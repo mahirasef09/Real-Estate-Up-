@@ -14,7 +14,7 @@ const MyReviews = () => {
                 <h1 className="text-5xl font-extrabold">My Reviews</h1>
             </div>
             <div className='flex justify-center'>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-5'>
                     {
                         myReviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
                     }
