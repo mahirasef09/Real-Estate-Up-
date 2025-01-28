@@ -9,10 +9,12 @@ import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../Hooks/useAdmin';
 import useAgent from '../Hooks/useAgent';
 import { Helmet } from 'react-helmet-async';
+import useFraud from '../Hooks/useFraud';
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     const [isAgent] = useAgent();
+    const [isFraud] = useFraud();
 
     return (
         <div>
@@ -46,7 +48,7 @@ const Dashboard = () => {
                             </>
                         }
                         {
-                            isAgent && <>
+                            isAgent  && <>
                                 <li className='text-xl font-bold'>
                                     <NavLink to="/dashboard/agentProfile"><AiFillProfile />Agent Profile</NavLink>
                                 </li>
@@ -60,14 +62,36 @@ const Dashboard = () => {
                                     <NavLink to="/dashboard/mySoldProperties"><SiSellfy />My Sold Properties</NavLink>
                                 </li>
                                 <li className='text-xl font-bold'>
-                                    <NavLink to="/dashboard/myRequestedProperties"><GoHomeFill />My Requested Properties</NavLink>
+                                    <NavLink to="/dashboard/myRequestedProperties"><GoHomeFill />Requested Properties</NavLink>
                                 </li>
                                 <li className='text-xl font-bold'>
                                     <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
                                 </li>
                             </>
                         }
-                        <div className={`${isAdmin == true || isAgent == true ? "hidden" : "flex"}`}>
+                        {
+                            isFraud && <>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/agentProfile"><AiFillProfile />Agent Profile</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/addProperty"><IoIosAddCircle />Add Property</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/myAddedProperties"><MdAddPhotoAlternate />My Added Properties</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/mySoldProperties"><SiSellfy />My Sold Properties</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/dashboard/myRequestedProperties"><GoHomeFill />Requested Properties</NavLink>
+                                </li>
+                                <li className='text-xl font-bold'>
+                                    <NavLink to="/"><MdHomeWork />Back to Home</NavLink>
+                                </li>
+                            </>
+                        }
+                        <div className={`${isAdmin == true || isAgent == true || isFraud == true ? "hidden" : "flex"}`}>
                             <div>
                                 <li className='text-xl font-bold'>
                                     <NavLink to="/dashboard/myProfile"><AiFillProfile />My Profile</NavLink>

@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom';
 
 const VerifiedPropertyCard = ({ property }) => {
     const { _id, propertyImage, agentImage, title, location, priceRange, adderName, status } = property;
-    
+
     return (
         <div>
-            <div className="card bg-base-100 w-64 h-[450px] shadow-xl">
+            <div className="card bg-base-100 w-64 h-[550px] shadow-xl">
                 <figure>
                     <img
+                        className='w-full h-[200px]'
                         src={propertyImage}
                         alt="Shoes" />
                 </figure>

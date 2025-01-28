@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         element: <PrivateRoute>
           <PropertyDetails></PropertyDetails>
         </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/property/${params.id}`)
+        loader: ({ params }) => fetch(`https://real-estate-platform-server-red.vercel.app/property/${params.id}`)
       },
       {
         path: "/signIn",
@@ -100,7 +100,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/makeAnOffer/:id",
         element: <MakeAnOffer></MakeAnOffer>,
-        loader: ({ params }) => fetch(`http://localhost:5000/wishlist/${params.id}`)
+        loader: ({ params }) => fetch(`https://real-estate-platform-server-red.vercel.app/wishlist/${params.id}`)
       },
       {
         path: "/dashboard/propertyBought",
@@ -127,7 +127,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/updateAddedProperty/:id",
         element: <UpdateProperty></UpdateProperty>,
-        loader: ({ params }) => fetch(`http://localhost:5000/property/${params.id}`)
+        loader: ({ params }) => fetch(`https://real-estate-platform-server-red.vercel.app/property/${params.id}`)
       },
       {
         path: "/dashboard/myAddedProperties",

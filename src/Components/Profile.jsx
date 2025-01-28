@@ -61,7 +61,7 @@ const Profile = () => {
                             </td>
                             <td>
                                 {
-                                    dashboardUser?.role
+                                    dashboardUser?.status
                                 }
                             </td>
                         </tr>

@@ -73,10 +73,10 @@ const MyRequestedProperties = () => {
     return (
         <div>
             <Helmet>
-                <title>Real Estate Up | My Requested Properties</title>
+                <title>Real Estate Up | Requested Properties</title>
             </Helmet>
             <div className="text-center py-5">
-                <h1 className="text-5xl font-extrabold">My Requested Properties</h1>
+                <h1 className="text-5xl font-extrabold">Requested Properties</h1>
             </div>
             <div className="overflow-x-auto">
                 <table className="table  w-full">

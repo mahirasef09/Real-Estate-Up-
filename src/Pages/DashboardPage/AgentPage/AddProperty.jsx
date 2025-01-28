@@ -48,7 +48,8 @@ const AddProperty = () => {
                 priceRange: data.priceRange,
                 agentImage: res2.data.data.display_url,
                 adderEmail: data.adderEmail,
-                adderName: data.adderName
+                adderName: data.adderName,
+                status: "pending"
             }
 
             const propertyRes = await axiosSecure.post('/property', newProperty);
@@ -117,7 +118,7 @@ const AddProperty = () => {
                                 <label className="label">
                                     <span className="label-text font-bold">Price Range</span>
                                 </label>
-                                <input type="text" {...register('priceRange', { required: true })} placeholder="Price Range" className="input input-bordered" required />
+                                <input type="text" {...register('priceRange', { required: true })} placeholder="Price Range input must be this way Exp: 10000-20000" className="input input-bordered" required />
                             </div>
 
                             <div className="form-control">

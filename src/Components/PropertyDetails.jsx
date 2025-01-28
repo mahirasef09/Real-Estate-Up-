@@ -58,7 +58,7 @@ const PropertyDetails = () => {
             Swal.fire({
                 position: "center",
                 icon: "error",
-                title: `${user?.displayName} is not an User`,
+                title: `${user?.displayName} is an admin or user`,
                 showConfirmButton: false,
                 timer: 2500
             });

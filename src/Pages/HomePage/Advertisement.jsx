@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import VerifiedPropertyCard from '../../Components/verifiedPropertyCard';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const Advertisement = () => {
     const [advertisedProperties, setAdvertisedProperties] = useState([]);
-    const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
-        axiosSecure.get(`/advertisedProperties`)
+        axiosPublic.get(`/advertisedProperties`)
             .then(res => setAdvertisedProperties(res.data))
     }, []);
 
@@ -16,8 +16,8 @@ const Advertisement = () => {
             <div className="text-center my-10">
                 <h1 className="text-5xl font-extrabold">Advertised Properties</h1>
             </div>
-            <div className='flex justify-between'>
-                <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 my-5'>
+            <div className='flex justify-around'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-5'>
                     {
                         advertisedProperties.map(property => <VerifiedPropertyCard key={property._id} property={property}></VerifiedPropertyCard>)
                     }

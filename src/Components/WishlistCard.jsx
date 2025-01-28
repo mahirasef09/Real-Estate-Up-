@@ -39,9 +39,10 @@ const WishlistCard = ({ wishlist }) => {
     }
     return (
         <div>
-            <div className="card bg-base-100 w-72 h-[450px] shadow-xl">
+            <div className="card bg-base-100 w-72 h-[550px] shadow-xl">
                 <figure>
                     <img
+                        className='w-full h-[200px]'
                         src={propertyImage}
                         alt="Shoes" />
                 </figure>
@@ -63,7 +64,7 @@ const WishlistCard = ({ wishlist }) => {
                     <p className='flex items-center gap-1'><IoLocation /><span className='text-gray-400'>{location}</span></p>
                     <p className='flex items-center'><FaDollarSign /><span className='text-gray-400'>{priceRange}</span></p>
                     <p className='flex items-center text-gray-400 uppercase'>Status: {status}</p>
-                    <div className={`${status === 'sold' ? "hidden":"card-actions justify-end"}`}>
+                    <div className={`${status === 'bought' ? "hidden" : "card-actions justify-end"}`}>
                         <Link to={`/dashboard/makeAnOffer/${_id}`}>
                             <button className="btn btn-outline btn-warning">Make an offer</button>
                         </Link>

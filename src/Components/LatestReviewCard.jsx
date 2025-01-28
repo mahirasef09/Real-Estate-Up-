@@ -5,7 +5,7 @@ const LatestReviewCard = ({ review }) => {
 
     return (
         <div>
-            <div className="card bg-gray-100 w-72 h-[400px] shadow-xl">
+            <div className="card bg-gray-100 w-64 h-[400px] shadow-xl">
                 <div className="card-body">
                     <figure>
                         <img
@@ -20,7 +20,7 @@ const LatestReviewCard = ({ review }) => {
                         <span className='font-bold'>Review:</span> {reviewDescription}
                     </p>
                     <p className="">
-                        <span className='font-bold'>Title:</span> {title}
+                        <span className='font-bold'>Property Title:</span> {title}
                     </p>
                 </div>
             </div>

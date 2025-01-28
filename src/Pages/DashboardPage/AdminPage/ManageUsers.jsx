@@ -87,7 +87,7 @@ const ManageUsers = () => {
                     if (res.data.modifiedCount > 0) {
                         refetch();
                         Swal.fire({
-                            position: "center",
+                            position: "top-end",
                             icon: "success",
                             title: `${user.name} is a fraud`,
                             showConfirmButton: false,
@@ -99,7 +99,7 @@ const ManageUsers = () => {
                     if (response.data.deletedCount > 0) {
                         refetch();
                         Swal.fire({
-                            position: "top-end",
+                            position: "center",
                             icon: "success",
                             title: `${user.name} is a fraud. All Properties added by him/her are deleted`,
                             showConfirmButton: false,
@@ -210,7 +210,7 @@ const ManageUsers = () => {
                                 </td>
                                 <td>
                                     {
-                                        user?.status === undefined ? <button onClick={() => handleMakeFraud(user)} className={`${!user?.status === undefined ? 'hidden' : 'btn btn-outline btn-warning'}`}>Make As Fraud</button> : user?.status === 'fraud' && <button className='btn bg-green-500'>Fraud</button>
+                                        user?.status === 'agent' ? <button onClick={() => handleMakeFraud(user)} className={`${!user?.status === 'agent' ? 'hidden' : 'btn btn-outline btn-warning'}`}>Make As Fraud</button> : user?.status === 'fraud' && <button className='btn bg-green-500'>Fraud</button>
                                     }
                                 </td>
                                 <td>

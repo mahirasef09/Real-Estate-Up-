@@ -15,14 +15,16 @@ const MakeAnOffer = () => {
     const [isAgent] = useAgent();
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
-    const { propertyId, title, location, agentName, agentEmail, priceRange, propertyImage } = useLoaderData();
-    const navigate = useNavigate();
 
+    const { propertyId, title, location, agentName, agentEmail, priceRange, propertyImage } = useLoaderData();
+    const minPrice = parseInt(priceRange.split('-')[0]);
+    const maxPrice = parseInt(priceRange.split('-')[1]);
+
+    const navigate = useNavigate();
     const { register, handleSubmit, reset } = useForm();
 
     const onSubmit = async (data) => {
-
-        if (data.offeredAmount < priceRange.split('-')[0] || data.offeredAmount > priceRange.split('-')[1]) {
+        if (data.offeredAmount < minPrice || data.offeredAmount > maxPrice) {
             Swal.fire({
                 position: "center",
                 icon: "error",
@@ -31,7 +33,7 @@ const MakeAnOffer = () => {
                 timer: 2500
             });
         }
-        if (isAdmin == true || isAgent == true) {
+        else if (isAdmin == true || isAgent == true) {
             Swal.fire({
                 position: "center",
                 icon: "error",
@@ -150,7 +152,7 @@ const MakeAnOffer = () => {
                                 <label className="label">
                                     <span className="label-text font-bold">Offer Amount</span>
                                 </label>
-                                <input type="text" {...register('offeredAmount', { required: true })} placeholder="Offer Amount" className="input input-bordered" required />
+                                <input type="number" {...register('offeredAmount', { required: true })} placeholder="Offer Amount" className="input input-bordered" required />
                             </div>
                         </div>
 

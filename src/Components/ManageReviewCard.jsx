@@ -1,9 +1,19 @@
 import React from 'react';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../Hooks/useAxiosSecure';
+import { useQuery } from '@tanstack/react-query';
 
 
 const ManageReviewCard = ({ review }) => {
     const { _id, title, reviewerImage, reviewerName, reviewDescription, reviewerEmail } = review;
+    const axiosSecure = useAxiosSecure();
+    const { data: allReviews = [], refetch } = useQuery({
+        queryKey: ['allReviews'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/allReviews`);
+            return res.data;
+        }
+    });
 
     const handleDeleteReview = async (id) => {
         Swal.fire({
@@ -39,7 +49,7 @@ const ManageReviewCard = ({ review }) => {
                 <div className="card-body">
                     <figure>
                         <img
-                        className='rounded-lg'
+                            className='rounded-lg w-full h-[150px]'
                             src={reviewerImage}
                             alt="Shoes" />
                     </figure>
@@ -53,7 +63,7 @@ const ManageReviewCard = ({ review }) => {
                         <span className='font-bold'>Review:</span> {reviewDescription}
                     </p>
                     <p className="">
-                        <span className='font-bold'>Title:</span> {title}
+                        <span className='font-bold'>Property Title:</span> {title}
                     </p>
                     <div className="card-actions justify-end">
 

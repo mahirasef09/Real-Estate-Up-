@@ -7,7 +7,7 @@ const BoughtCard = ({ property }) => {
 
     return (
         <div>
-            <div className="card bg-base-100 w-64 h-[450px] shadow-xl">
+            <div className="card bg-base-100 w-64 h-[550px] shadow-xl">
                 <figure>
                     <img
                         src={propertyImage}
@@ -15,14 +15,14 @@ const BoughtCard = ({ property }) => {
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">
-                        Title:<span>{title}</span>
+                        Title: {title}
                     </h2>
                     <p className='flex items-center gap-1'><IoLocation /><span className='text-gray-400'>{location}</span></p>
                     <p className="">
                         <span className='font-bold'>Agent Name:</span> {agentName}
                     </p>
                     <p className="">
-                        <span className='font-bold'>Offered Amount:</span> {offeredAmount}
+                        <span className='font-bold'>Offered Amount:</span> ${offeredAmount}
                     </p>
                     <p className="">
                         <span className='font-bold'>Status:</span> {status}
