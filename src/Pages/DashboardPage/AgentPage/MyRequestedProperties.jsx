@@ -136,13 +136,13 @@ const MyRequestedProperties = () => {
                                 <td>
                                     {
 
-                                        property.status === 'accepted' ? <button className="btn bg-green-500">Accepted</button> : <button onClick={() => handleAccept(property)} className={`${property.status === 'rejected' ? "hidden" : "btn btn-outline btn-warning"}`}>Accept</button>
+                                        property.status === 'accepted' ? <button className="btn bg-green-500">Accepted</button> : <button onClick={() => handleAccept(property)} className={`${property.status === 'rejected' || property.status === 'bought' ? "hidden" : "btn btn-outline btn-warning"}`}>Accept</button>
 
                                     }
                                 </td>
                                 <td>
                                     {
-                                        property.status === 'rejected' ? <button className="btn bg-green-500">Rejected</button> : <button onClick={() => handleReject(property)} className={`${property.status === 'accepted' ? "hidden" : "btn btn-outline btn-warning"}`}>Reject</button>
+                                        property.status === 'rejected' ? <button className="btn bg-green-500">Rejected</button> : <button onClick={() => handleReject(property)} className={`${property.status === 'accepted' || property.status === 'bought' ? "hidden" : "btn btn-outline btn-warning"}`}>Reject</button>
                                     }
                                 </td>
 
