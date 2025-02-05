@@ -32,6 +32,25 @@ The purpose of your real estate website is to connect property buyers, sellers, 
 9.  In server section dotenv is used.
 10. JWT Authentication is used
 
+# **Dependencies of this project:**
+*   "@stripe/react-stripe-js": "^3.1.1",
+*   "@tanstack/react-query": "^5.64.1",
+*   "axios": "^1.7.9",
+*   "firebase": "^11.1.0",
+*   "localforage": "^1.10.0",
+*   "lottie-react": "^2.4.0",
+*   "match-sorter": "^8.0.0",
+*   "moment": "^2.30.1",
+*   "react": "^18.3.1",
+*   "react-dom": "^18.3.1",
+*   "react-helmet-async": "^2.0.5",
+*   "react-hook-form": "^7.54.2",
+*   "react-icons": "^5.4.0",
+*   "react-router-dom": "^7.1.1",
+*   "react-tooltip": "^5.28.0",
+*   "sort-by": "^1.2.0",
+*   "sweetalert2": "^11.15.10"
+
 # **Requirement Document Link:**
 https://docs.google.com/document/d/1zEpclTfEkYY2lNYBFmty6qaVqa5TQdfDyl3NE7piJmY/edit?usp=sharing
 
